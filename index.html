@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solaris — предложение Cloud Plus: заявки из Telegram в 1С, маршруты и подтверждение доставки</title>
+<meta name="description" content="Предварительное коммерческое предложение Cloud Plus для Solaris: приём заявок объектов из Telegram, передача в 1С с подтверждением оператора, распределение по машинам и маршрут, подтверждение доставки водителем.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c2230; --text:#333a47; --mut:#6b7280; --line:#dcdfe5;
+  --bg:#f5f6f8; --card:#ffffff; --acc:#1f4e79; --acc2:#e8eef5; --warn:#b45309; --warnbg:#fdf1e3;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 "Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{color:var(--ink);font-weight:600;margin:0;line-height:1.25}
+p{margin:0}
+a{color:var(--acc)}
+.page{max-width:780px;margin:0 auto;padding:40px 24px 72px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.top .from{font-size:13px;color:var(--mut);line-height:1.5}
+.top .from b{display:block;font-size:14px;color:var(--acc);letter-spacing:.08em}
+.top .to{font-size:13px;color:var(--mut);text-align:right;line-height:1.5}
+.top .to b{display:block;font-size:20px;color:var(--ink);letter-spacing:.04em;font-weight:600}
+h1{font-size:clamp(26px,3.6vw,34px);margin-top:36px;letter-spacing:-.01em}
+.lead{font-size:17px;margin-top:18px;max-width:62ch}
+h2{font-size:21px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin-top:22px}
+.page>p,.page>ul,.page>ol{margin-top:14px;max-width:66ch}
+ul,ol{padding-left:22px}
+li{margin:6px 0}
+.note{font-size:14px;color:var(--mut);margin-top:12px;max-width:66ch}
+
+/* как идёт заявка: цепочка участников, как есть и как станет */
+.chain{margin-top:22px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--line);background:var(--card)}
+.chain .s{padding:14px 12px;border-right:1px solid var(--line);font-size:13px;position:relative}
+.chain .s:last-child{border-right:0}
+.chain .s b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px;font-size:13px}
+.chain .s span{color:var(--mut)}
+.chain .s em{display:block;margin-top:8px;font-style:normal;font-size:12px;color:var(--acc);background:var(--acc2);padding:4px 6px}
+@media(max-width:700px){.chain{grid-template-columns:1fr 1fr}.chain .s{border-bottom:1px solid var(--line)}.chain .s:nth-child(2n){border-right:0}}
+@media(max-width:420px){.chain{grid-template-columns:1fr}.chain .s{border-right:0}}
+
+/* один день доставки */
+.day{margin-top:20px;border:1px solid var(--line);background:var(--card)}
+.day .h{padding:12px 16px;border-bottom:1px solid var(--line);font-size:14px}
+.day .h b{color:var(--ink)}
+.day .t{display:grid;grid-template-columns:72px 1fr;gap:0 16px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:14px}
+.day .t:last-of-type{border-bottom:0}
+.day .t i{font-style:normal;color:var(--mut);font-size:13px;padding-top:2px;white-space:nowrap}
+.day .t b{color:var(--ink);font-weight:600}
+.day .t.alert{background:var(--warnbg)}
+.day .t.alert b{color:var(--warn)}
+.msg{margin:12px 16px 16px 104px;padding:12px 14px;background:var(--acc2);font-size:14px;max-width:48ch;border-left:3px solid var(--acc)}
+.msg small{display:block;color:var(--mut);font-size:12px;margin-bottom:4px}
+@media(max-width:600px){.msg{margin-left:16px}}
+
+/* таблицы */
+table{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px}
+th,td{text-align:left;padding:12px 10px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;font-weight:600;color:var(--mut);letter-spacing:.06em;text-transform:uppercase}
+td.n{color:var(--ink);font-weight:500}
+td small{display:block;color:var(--mut);font-size:13px;margin-top:2px}
+.ph{color:var(--warn);background:var(--warnbg);padding:0 4px;white-space:nowrap}
+@media(max-width:600px){table,thead,tbody,tr,th,td{display:block}thead{display:none}td{padding:6px 0;border:0}td.n{padding-top:14px}tr{border-bottom:1px solid var(--line);padding-bottom:10px}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:8px}
+@media(max-width:600px){.two{grid-template-columns:1fr}}
+.steps{position:relative;padding-left:20px}
+.steps::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:2px;background:var(--line);transform:scaleY(0);transform-origin:top;transition:transform 1.2s ease}
+.steps.in::before{transform:scaleY(1)}
+
+.next{margin-top:56px;padding:24px;background:var(--card);border:1px solid var(--line);transition:border-color .8s ease .3s}
+.next.in{border-color:var(--acc)}
+.next h2{border:0;padding:0;margin:0;font-size:19px}
+.next p{margin-top:10px;max-width:62ch}
+.sign{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:14px}
+.sign b{display:block;color:var(--ink);font-weight:600}
+.sign span{color:var(--mut)}
+@media(max-width:600px){.sign{grid-template-columns:1fr}}
+footer{margin-top:40px;font-size:12px;color:var(--mut);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* движение: появление по мере чтения, цепочка собирается слева направо, день проигрывается по часам */
+.rv{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
+.rv.in{opacity:1;transform:none}
+.top.rv{transition-delay:.05s}h1.rv{transition-delay:.15s}.lead.rv{transition-delay:.3s}
+.stag>*{opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease}
+.stag.in>*{opacity:1;transform:none}
+.stag.in>*:nth-child(1){transition-delay:.05s}.stag.in>*:nth-child(2){transition-delay:.17s}.stag.in>*:nth-child(3){transition-delay:.29s}
+.stag.in>*:nth-child(4){transition-delay:.41s}.stag.in>*:nth-child(5){transition-delay:.53s}.stag.in>*:nth-child(6){transition-delay:.65s}
+.chain .s{opacity:0;transform:translateX(-8px);transition:opacity .45s ease,transform .45s ease}
+.chain.play .s{opacity:1;transform:none}
+.chain.play .s:nth-child(2){transition-delay:.15s}.chain.play .s:nth-child(3){transition-delay:.3s}.chain.play .s:nth-child(4){transition-delay:.45s}.chain.play .s:nth-child(5){transition-delay:.6s}.chain.play .s:nth-child(6){transition-delay:.75s}
+.chain .s em{opacity:0;transition:opacity .4s ease 1.1s}
+.chain.play .s em{opacity:1}
+.day .t{opacity:0;transition:opacity .4s ease,background .5s ease}
+.day.play .t{opacity:1}
+.day.play .t:nth-of-type(1){transition-delay:.1s}.day.play .t:nth-of-type(2){transition-delay:.5s}.day.play .t:nth-of-type(3){transition-delay:.9s}.day.play .t:nth-of-type(4){transition-delay:1.3s}
+.day.play .t:nth-of-type(5){transition-delay:1.7s}.day.play .t:nth-of-type(6){transition-delay:2.1s}.day.play .t:nth-of-type(7){transition-delay:2.6s}
+.day .t.alert b{animation:none}
+.day.play .t.alert b{animation:blink .5s ease 2.9s 2}
+@keyframes blink{50%{opacity:.35}}
+.msg{opacity:0;transform:translateY(6px);transition:opacity .5s ease 3.3s,transform .5s ease 3.3s}
+.day.play .msg{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv,.stag>*,.chain .s,.chain .s em,.day .t,.msg{opacity:1;transform:none;transition:none}.day.play .t.alert b{animation:none}.steps::before{transform:none;transition:none}}
+@media print{body{background:#fff}.page{padding:0}h2{break-after:avoid}.day,.chain,table,.next{break-inside:avoid}.rv,.stag>*,.chain .s,.chain .s em,.day .t,.msg{opacity:1;transform:none}.steps::before{transform:none}}
+</style>
+</head>
+<body>
+<main class="page">
+
+<div class="top rv">
+  <div class="from"><b>CLOUD PLUS</b>Предварительное коммерческое предложение<br><span data-field="date">[дата]</span></div>
+  <div class="to"><b data-field="client">SOLARIS</b>по итогам встречи <span data-field="meeting-date">[дата встречи]</span></div>
+</div>
+
+<h1 class="rv">Заявки объектов — из Telegram в 1С, машины и маршрут — без ручной сортировки, доставка — с подтверждением</h1>
+<p class="lead rv">Предлагаем первым этапом автоматизировать тот кусок, который вы контролируете сами: от заявки объекта в Telegram до маршрута водителя и фото о доставке. Бухгалтерию и работу с госзаказчиками в этот этап не берём — сначала логистика.</p>
+
+<h2 class="rv">Как это работает у вас сейчас</h2>
+<p class="rv">Объекты пишут заявки в Telegram как придётся — текстом, таблицей, голосовым. Оператор до утреннего часа собирает из этого полную заявку и вручную забивает её в 1С. Дальше 1С показывает потребность, склад собирает что есть, нехватку отдаёт в закуп, печатаются счета-фактуры, и люди руками раскладывают документы по машинам. Логист сам решает, какая машина куда едет и в каком порядке, водитель получает маршрут перед выездом. Фото о доставке присылают не всегда, и никто системно это не проверяет.</p>
+<p class="rv">Слабые места здесь два: ручной перенос заявок в 1С по утрам и доставка без подтверждения. Плюс вся логика маршрутов живёт в голове одного логиста.</p>
+
+<h2 class="rv">Что меняется</h2>
+<div class="chain">
+  <div class="s"><b>Объект</b><span>пишет в Telegram как раньше — текст, таблица, голос</span><em>ничего не меняется</em></div>
+  <div class="s"><b>Оператор</b><span>видит уже разобранную заявку: объект, товар, количество, срочность</span><em>проверяет и подтверждает, не перепечатывает</em></div>
+  <div class="s"><b>1С</b><span>получает заявку после подтверждения</span><em>потребность, склад, закуп — как сейчас</em></div>
+  <div class="s"><b>Логист</b><span>получает объекты, разложенные по машинам, и порядок точек</span><em>правит и утверждает маршрут</em></div>
+  <div class="s"><b>Водитель</b><span>получает маршрут в Telegram, на каждой точке отмечает «доставлено» и прикладывает фото</span><em>работает и без связи — отправит позже</em></div>
+  <div class="s"><b>Руководитель</b><span>видит, где подтверждений меньше, чем точек, или фото старое</span><em>уведомление, а не проверка вручную</em></div>
+</div>
+<p class="note rv">Документы на объекты группируются по машинам так же, как объекты, — сортировать счета-фактуры руками больше не нужно. Приоритетных объектов у вас обычно 3–4 в день: логист ставит их первыми, остальные точки выстраиваются за ними.</p>
+
+<h2 class="rv">Один день на примере</h2>
+<div class="day">
+  <div class="h"><b>Вторник</b> · 12 объектов, 3 машины, 2 срочные заявки</div>
+  <div class="t"><i>07:40</i><div><b>Заявки приходят в Telegram</b> — объект «Юнусабад-3» голосовым, объект «Сергели» таблицей. Бот разбирает обе в строки: товар, количество, срочность.</div></div>
+  <div class="t"><i>08:30</i><div><b>Оператор подтверждает</b> 12 заявок за несколько минут: правит одну позицию, где голосовое разобралось неверно, и отправляет в 1С.</div></div>
+  <div class="t"><i>09:10</i><div><b>Склад и закуп</b> работают в 1С как сейчас. Документы на 12 объектов уже разложены по трём машинам.</div></div>
+  <div class="t"><i>09:40</i><div><b>Логист</b> ставит два срочных объекта первыми, меняет порядок пары точек и утверждает маршрут. Водители получают его в Telegram.</div></div>
+  <div class="t"><i>10:00–15:00</i><div><b>Доставка.</b> На каждой точке водитель нажимает «доставлено» и прикладывает фото. Время фиксируется.</div></div>
+  <div class="t alert"><i>15:20</i><div><b>Машина 2: 4 объекта, 3 подтверждения.</b> Одна точка без фото — руководителю уходит уведомление.</div></div>
+  <div class="msg"><small>Уведомление руководителю</small>Машина 2 (Азизов): объект «Чиланзар-7» — нет подтверждения доставки. Последняя отметка 14:52.</div>
+</div>
+<p class="note rv">Проверка «фото не старое и относится к этой доставке» — по дате файла и по содержимому; при сомнении тоже уведомление, а не блокировка.</p>
+
+<h2 class="rv">Что это даёт</h2>
+<ul class="stag">
+  <li>Оператор по утрам подтверждает, а не перепечатывает. Ошибки переноса в 1С уходят.</li>
+  <li>Счета-фактуры и объекты разложены по машинам автоматически.</li>
+  <li>Маршрут собирается за минуты, логист только правит. Логика перестаёт зависеть от одного человека.</li>
+  <li>По каждой машине видно: сколько точек, сколько подтверждено, где пробел, — в тот же день.</li>
+</ul>
+<p class="note rv">На старте система ничего не делает без человека: заявку подтверждает оператор, маршрут — логист. Так договорились на встрече.</p>
+
+<h2 class="rv">Как будем делать</h2>
+<div class="steps rv">
+<h3 class="rv">1. Обследование — с оператором, специалистом по 1С и логистом</h3>
+<p class="rv">Фиксируем поля заявки, смотрим вашу 1С (конфигурация, версия, что доступно для обмена), записываем правила логиста: как объекты попадают в машины, чем ограничены машины, в каком порядке точки. Договариваемся о формате подтверждения — фото, видео или оба. На выходе — согласованное ТЗ вместо предварительного.</p>
+<h3 class="rv">2. Заявки и 1С</h3>
+<p class="rv">Бот принимает заявки из Telegram в трёх форматах, показывает оператору разобранные строки, после подтверждения передаёт в 1С. Срочные помечаются.</p>
+<h3 class="rv">3. Машины и маршрут</h3>
+<p class="rv">Распределение объектов и документов по машинам, порядок точек с приоритетными первыми, экран логиста для правки и утверждения.</p>
+<h3 class="rv">4. Подтверждение доставки</h3>
+<p class="rv">Бот водителя с маршрутом на день, отметка «доставлено» с фото/видео и временем, отложенная отправка без связи, сверка «точек столько же, сколько подтверждений», уведомления руководителю.</p>
+</div>
+<p class="note rv">Этапы 2–4 можно запускать по очереди: заявки и 1С дают эффект сразу, доставку можно включить следующей.</p>
+
+<h2 class="rv">Условия</h2>
+<table class="rv">
+  <thead><tr><th>Этап</th><th>Срок</th><th>Стоимость</th><th>Оплата</th></tr></thead>
+  <tbody class="stag">
+    <tr><td class="n">1. Обследование<small>оператор, 1С, логист; согласованное ТЗ</small></td><td data-field="t1"><span class="ph">[срок]</span></td><td data-field="p1"><span class="ph">[сумма]</span></td><td data-field="pay1"><span class="ph">[условия]</span></td></tr>
+    <tr><td class="n">2. Заявки из Telegram и 1С<small>разбор текста, таблиц, голоса; подтверждение оператором; передача в 1С</small></td><td data-field="t2"><span class="ph">[срок]</span></td><td data-field="p2"><span class="ph">[сумма]</span></td><td data-field="pay2"><span class="ph">[условия]</span></td></tr>
+    <tr><td class="n">3. Машины и маршрут<small>распределение, порядок точек, экран логиста</small></td><td data-field="t3"><span class="ph">[срок]</span></td><td data-field="p3"><span class="ph">[сумма]</span></td><td data-field="pay3"><span class="ph">[условия]</span></td></tr>
+    <tr><td class="n">4. Подтверждение доставки<small>бот водителя, фото/видео, сверка, уведомления</small></td><td data-field="t4"><span class="ph">[срок]</span></td><td data-field="p4"><span class="ph">[сумма]</span></td><td data-field="pay4"><span class="ph">[условия]</span></td></tr>
+  </tbody>
+</table>
+<p class="note rv">Сроки этапов 2–4 уточняем после обследования: они зависят от того, как устроен обмен с вашей 1С и сколько правил у логиста. Предложение действительно до <span data-field="valid-until" class="ph">[дата]</span>.</p>
+
+<div class="two rv">
+  <div>
+    <h3>Что не входит в первый этап</h3>
+    <ul class="stag">
+      <li>Бухгалтерия и обмен с внешними заказчиками и госструктурами.</li>
+      <li>Управленческий учёт и отчёты для учредителей.</li>
+      <li>Кухня, меню и остатки на объектах оператора питания.</li>
+      <li>Бот для внешних клиентов.</li>
+      <li>Решения без участия сотрудника.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Что спросим на встрече</h3>
+    <ul class="stag">
+      <li>Конфигурация и версия 1С, как в неё можно писать.</li>
+      <li>До какого часа принимаются обычные и срочные заявки.</li>
+      <li>Откуда брать список машин, водителей и объектов с адресами.</li>
+      <li>Нужна ли геопозиция в подтверждении и сколько хранить фото.</li>
+      <li>Сколько в день заявок, объектов, машин и маршрутов.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="next rv">
+  <h2>Следующий шаг</h2>
+  <p>Встреча с оператором, специалистом по 1С и логистом — это и есть начало обследования. Час-полтора: проходим одну реальную утреннюю заявку от Telegram до маршрута и смотрим, где что лежит в 1С.</p>
+  <div class="sign">
+    <div><b>Cloud Plus</b><span data-field="person">[Контактное лицо]</span><br><span data-field="phone">[Телефон / e-mail]</span></div>
+    <div><b>Время</b><span>предложите пару вариантов на этой или следующей неделе</span></div>
+  </div>
+</div>
+
+<footer><span>Cloud Plus · предварительное предложение для Solaris</span><span>не является офертой</span></footer>
+</main>
+<script>
+(function(){
+  const targets=document.querySelectorAll(".rv,.stag,.chain,.day");
+  const show=e=>{e.classList.add("in");if(e.matches(".chain,.day"))e.classList.add("play");};
+  if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches){targets.forEach(show);return;}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){show(e.target);io.unobserve(e.target);}}),{threshold:.15,rootMargin:"0px 0px -6% 0px"});
+  targets.forEach(e=>io.observe(e));
+})();
+</script>
+</body>
+</html>
