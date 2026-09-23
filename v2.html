@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Solaris — предложение Cloudplus: этап 1, приём и первичная обработка заявок</title>
-<meta name="description" content="Предварительное коммерческое предложение Cloudplus для Solaris, этап 1: приём заявок объектов из Telegram в любом виде, распознавание, сборка структурированной заявки, подтверждение отправителем и проверка оператором.">
+<meta name="description" content="Предварительное коммерческое предложение Cloudplus для Solaris, этап 1: приём заявок объектов из Telegram в любом виде, распознавание, сборка структурированной заявки и проверка оператором.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -229,7 +229,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
   .day,.hub,.chk,table,.next,.bot-win{break-inside:avoid}.bleed{left:auto;width:auto;transform:none;padding:0;background:none}}
 
 /* лента статусов заявки */
-.track{margin-top:22px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--line);background:#fff;border-radius:14px;overflow:hidden}
+.track{margin-top:22px;display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);background:#fff;border-radius:14px;overflow:hidden}
 .track .st{padding:16px 14px;border-right:1px solid var(--line);font-size:14px;position:relative;opacity:0;transform:translateX(-8px);transition:opacity .45s ease,transform .45s ease}
 .track .st:last-child{border-right:0}
 .track.in .st{opacity:1;transform:none}
@@ -258,7 +258,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 </div>
 
 <h1 class="rv">Один канал приёма заявок: из Telegram — в готовую структурированную заявку</h1>
-<p class="lead rv">Первый этап ограничен приёмом и первичной обработкой заявок. Объекты продолжают писать в Telegram как привыкли — текстом, голосом, фото, таблицей. Бот превращает это в заполненную форму заявки единого образца, отправитель её подтверждает, оператор проверяет только спорные места. Интеграция с 1С, склад, закуп, маршруты и контроль доставки в этот этап не входят и оцениваются отдельно.</p>
+<p class="lead rv">Первый этап ограничен приёмом и первичной обработкой заявок. Объекты продолжают писать в Telegram как привыкли — текстом, голосом, фото, таблицей. Бот превращает это в заполненную форму заявки единого образца, оператор проверяет только спорные строки. Интеграция с 1С, склад, закуп, маршруты и контроль доставки в этот этап не входят и оцениваются отдельно.</p>
 
 <h2 class="rv">Как это работает у вас сейчас</h2>
 <p class="rv">Заявки приходят оператору в Telegram в шести разных видах: свободный текст, голосовые, фото рукописных и печатных бланков, Excel-файлы, документы и изображения, плюс несколько сообщений по одной заявке подряд. Оператор <mark>вручную разбирает каждое</mark>, дописывает недостающее и <mark>переносит позиции в форму заявки</mark> — строка за строкой, руками. Разные написания одного товара приходится сводить в голове, а исходные сообщения теряются в ленте чата.</p>
@@ -268,7 +268,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <div class="hub-l"><span>Что приходит от объектов</span><span>Модуль Cloudplus</span></div>
 <svg class="hub-h" viewBox="0 0 1000 440" role="img" aria-label="Текст, голосовые, фото и таблицы проходят через модуль Cloudplus и превращаются в структурированную заявку">
 <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#4a6f95" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4a6f95" stop-opacity=".22"/><stop offset="1" stop-color="#4a6f95" stop-opacity="0"/></radialGradient></defs>
-<g class="lines"><path d="M216 80 C 320 80, 330 225, 408 225"/><path d="M234 177 C 330 177, 330 225, 408 225"/><path d="M245 274 C 340 274, 330 225, 408 225"/><path d="M254 371 C 340 371, 330 225, 408 225"/><path d="M592 225 C 670 225, 650 80, 683 80"/><path d="M592 225 C 670 225, 650 177, 671 177"/><path d="M592 225 C 670 225, 660 274, 693 274"/><path d="M592 225 C 670 225, 620 371, 700 371"/></g>
+<g class="lines"><path d="M216 80 C 320 80, 330 225, 408 225"/><path d="M234 177 C 330 177, 330 225, 408 225"/><path d="M245 274 C 340 274, 330 225, 408 225"/><path d="M254 371 C 340 371, 330 225, 408 225"/><path d="M592 225 C 670 225, 650 80, 683 80"/><path d="M592 225 C 670 225, 650 177, 671 177"/><path d="M592 225 C 670 225, 660 274, 751 274"/><path d="M592 225 C 670 225, 620 371, 700 371"/></g>
 <ellipse cx="500" cy="225" rx="180" ry="125" fill="url(#glow)"/>
 <g class="p"><rect x="50" y="59" width="144" height="42" rx="10"/><text x="122" y="86">Текст в чате</text></g>
 <g class="p"><rect x="50" y="156" width="162" height="42" rx="10"/><text x="131" y="183">Голосовые</text></g>
@@ -276,7 +276,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <g class="p"><rect x="50" y="350" width="182" height="42" rx="10"/><text x="141" y="377">Excel и таблицы</text></g>
 <g class="p"><rect x="691" y="59" width="259" height="42" rx="10"/><text x="820" y="86">Распознаёт и собирает</text></g>
 <g class="p"><rect x="679" y="156" width="271" height="42" rx="10"/><text x="814" y="183">Сверяет со справочником</text></g>
-<g class="p"><rect x="701" y="253" width="249" height="42" rx="10"/><text x="825" y="280">Спрашивает отправителя</text></g>
+<g class="p"><rect x="759" y="253" width="191" height="42" rx="10"/><text x="854" y="280">Помечает спорное</text></g>
 <g class="p"><rect x="708" y="350" width="242" height="42" rx="10"/><text x="829" y="377">Отдаёт оператору</text></g>
 <g class="c"><rect x="416" y="195" width="168" height="60" rx="15"/><text x="500" y="233">Cloudplus</text></g>
 </svg>
@@ -291,7 +291,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <g class="p"><rect x="125" y="259" width="170" height="42" rx="10"/><text x="210" y="286">Excel и таблицы</text></g>
 <g class="p"><rect x="90" y="519" width="240" height="42" rx="10"/><text x="210" y="546">Распознаёт и собирает</text></g>
 <g class="p"><rect x="85" y="589" width="250" height="42" rx="10"/><text x="210" y="616">Сверяет со справочником</text></g>
-<g class="p"><rect x="90" y="659" width="240" height="42" rx="10"/><text x="210" y="686">Спрашивает отправителя</text></g>
+<g class="p"><rect x="125" y="659" width="170" height="42" rx="10"/><text x="210" y="686">Помечает спорное</text></g>
 <g class="p"><rect x="97" y="729" width="226" height="42" rx="10"/><text x="210" y="756">Отдаёт оператору</text></g>
 <g class="c"><rect x="126" y="380" width="168" height="60" rx="15"/><text x="210" y="418">Cloudplus</text></g>
 </svg>
@@ -300,17 +300,16 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 
 <h2 class="rv">Что меняется в работе людей</h2>
 <ul class="chk rv">
-  <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="tx"><b>Отправитель видит, что из его сообщения поняли</b> — объект, позиции, количество, единицы, дата, срочность, комментарий — и подтверждает, правит или отменяет прямо в чате</span></li>
-  <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="tx"><b>Форма заполняется сама, оператор разбирает только спорное</b> — нераспознанные и неоднозначные позиции; остальное приходит готовой формой с исходным сообщением рядом</span></li>
+    <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="tx"><b>Форма заполняется сама, оператор разбирает только спорное</b> — нераспознанные и неоднозначные позиции; остальное приходит готовой формой с исходным сообщением рядом</span></li>
   <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="tx"><b>Названия сводятся к справочнику</b> — «масло подс.», «масло подсолнечное», «подсолн. масло» становятся одной позицией; новые написания оператор привязывает один раз</span></li>
   <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="tx"><b>Ничего не теряется</b> — у заявки есть номер, время приёма, статус и история исправлений; исходные файлы лежат при ней</span></li>
   <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="tx"><b>Администратор ведёт объекты и права</b> — пользователи, привязка к объектам, справочники и доступы в одном месте</span></li>
 </ul>
-<p class="note rv">Спорные данные система не подтверждает сама: пока не ответил отправитель или оператор, заявка стоит в статусе «требует уточнения».</p>
+<p class="note rv">Спорные данные система не подтверждает сама: пока оператор не разобрал строку, заявка стоит в статусе «требует уточнения». От сотрудника объекта ничего сверх привычного сообщения не требуется.</p>
 
 <div class="bot rv" id="bot">
   <div class="bot-top">
-    <div><h3>Заявка от объекта: голосовое — за полторы минуты</h3><p>Как это выглядит у отправителя в Telegram. Кнопки рабочие — можно пройти сценарий</p></div>
+    <div><h3>Заявка от объекта: голосовое — за полторы минуты</h3><p>Как это выглядит в чате объекта: человек говорит как обычно, дальше работает модуль</p></div>
     <button type="button" class="bot-run" id="botRun"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><circle cx="9" cy="13" r="1.3"/><circle cx="15" cy="13" r="1.3"/><path d="M12 3v4"/></svg>Прогнать сценарий</button>
   </div>
   <div class="bot-grid">
@@ -328,7 +327,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
           <li><span class="ic">⚠️</span><div><b>Спорные места</b><small>что расслышано или прочитано неуверенно</small></div></li>
         </ul>
       </div>
-      <div class="bot-note">Сценарий из ТЗ, п. 5.3: до подтверждения отправителем заявка оператору не уходит. Кто подтверждает итоговую заявку — отправитель, оператор или оба — согласуем до начала работ.</div>
+      <div class="bot-note">От объекта не требуется заполнять поля, нажимать кнопки и подтверждать — сообщение отправлено, дальше разбирается на нашей стороне. Кто подтверждает итоговую заявку — оператор или оба участника — согласуем до начала работ.</div>
     </div>
   </div>
 </div>
@@ -337,8 +336,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <div class="track rv">
   <div class="st"><b>Получена</b><span>номер, время, исходные файлы сохранены</span></div>
   <div class="st"><b>Обрабатывается</b><span>распознавание, разбор на позиции</span></div>
-  <div class="st warn"><b>Требует уточнения</b><span>спорная позиция — вопрос отправителю</span></div>
-  <div class="st"><b>Ждёт отправителя</b><span>показали сборку, ждём «верно»</span></div>
+  <div class="st warn"><b>Требует уточнения</b><span>спорная строка — разбирает оператор</span></div>
   <div class="st"><b>Ждёт оператора</b><span>проверка спорных мест</span></div>
   <div class="st ok"><b>Подтверждена</b><span>форма заполнена, готова к дальнейшей работе</span></div>
 </div>
@@ -347,7 +345,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <h2 class="rv">Что получаете по итогам этапа</h2>
 <ul class="stag">
   <li>Telegram-бот приёма заявок и модуль распознавания входящих материалов.</li>
-  <li>Сценарий проверки и подтверждения заявки отправителем.</li>
+  <li>Уведомления объекту: заявка принята, принята с правками или отклонена.</li>
   <li>Рабочее место оператора: очередь заявок, исходные материалы рядом с распознанными, исправление и подтверждение.</li>
   <li>Справочники объектов, товаров, единиц и правила сопоставления написаний.</li>
   <li>Журнал заявок, статусов и действий; согласованная форма итоговой заявки — её оператор получает заполненной.</li>
@@ -361,7 +359,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <h3 class="rv">2. Справочники и формат заявки</h3>
 <p class="rv">Загружаем объекты, пользователей и привязки, товарный справочник с единицами и вариантами написания, правила пересчёта единиц. Фиксируем форму итоговой заявки — ту, что оператор сегодня заполняет руками.</p>
 <h3 class="rv">3. Бот и распознавание</h3>
-<p class="rv">Приём текста, голосовых, фото и сканов, Excel и документов; объединение нескольких сообщений в одну заявку; защита от дублей; разбор на позиции, сопоставление со справочником, пометка спорного; проверка и подтверждение отправителем.</p>
+<p class="rv">Приём текста, голосовых, фото и сканов, Excel и документов; объединение нескольких сообщений в одну заявку; защита от дублей; разбор на позиции, сопоставление со справочником, пометка спорного.</p>
 <h3 class="rv">4. Рабочее место оператора и пилот</h3>
 <p class="rv">Очередь заявок по статусам, исходные материалы рядом с распознанными, исправление позиций и привязка новых написаний, запрос уточнения у отправителя, подтверждение и отклонение, журнал действий, уведомления. Дальше — пилот на согласованной группе объектов и прогон контрольных заявок.</p>
 </div>
@@ -371,7 +369,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <ul class="stag">
   <li>Бот принимает все согласованные форматы; исходные сообщения и файлы сохраняются без потери.</li>
   <li>Данные заявки приводятся к единой структуре, обязательные поля проверяются.</li>
-  <li>Отправитель видит собранную заявку и может подтвердить или исправить её.</li>
+  <li>Несколько сообщений и файлов по одной заявке собираются в одну, повторная отправка не создаёт дубль.</li>
   <li>Спорные и нераспознанные позиции уходят оператору, а не подтверждаются молча.</li>
   <li>Оператор открывает исходные материалы, исправляет данные и подтверждает заявку.</li>
   <li>Подтверждённая заявка приходит оператору заполненной формой согласованного образца; статус и история действий сохраняются.</li>
@@ -385,7 +383,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
   <tbody class="stag">
     <tr><td class="n">1. Согласование и контрольные примеры<small>открытые вопросы ТЗ, состав пилота, критерии успешности</small></td><td data-field="t1"><span class="ph">[срок]</span></td><td data-field="p1"><span class="ph">[сумма]</span></td><td data-field="pay1"><span class="ph">[условия]</span></td></tr>
     <tr><td class="n">2. Справочники и формат заявки<small>объекты, пользователи, товары, единицы, правила сопоставления</small></td><td data-field="t2"><span class="ph">[срок]</span></td><td data-field="p2"><span class="ph">[сумма]</span></td><td data-field="pay2"><span class="ph">[условия]</span></td></tr>
-    <tr><td class="n">3. Бот и распознавание<small>текст, голос, фото, Excel; сборка заявки; подтверждение отправителем</small></td><td data-field="t3"><span class="ph">[срок]</span></td><td data-field="p3"><span class="ph">[сумма]</span></td><td data-field="pay3"><span class="ph">[условия]</span></td></tr>
+    <tr><td class="n">3. Бот и распознавание<small>текст, голос, фото, Excel; сборка заявки; пометка спорных строк</small></td><td data-field="t3"><span class="ph">[срок]</span></td><td data-field="p3"><span class="ph">[сумма]</span></td><td data-field="pay3"><span class="ph">[условия]</span></td></tr>
     <tr><td class="n">4. Рабочее место оператора и пилот<small>очередь, исправления, статусы, журнал, запуск на группе объектов</small></td><td data-field="t4"><span class="ph">[срок]</span></td><td data-field="p4"><span class="ph">[сумма]</span></td><td data-field="pay4"><span class="ph">[условия]</span></td></tr>
   </tbody>
 </table>
@@ -442,10 +440,10 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 (function(){
   var body=document.getElementById("botBody"), btn=document.getElementById("botRun"), root=document.getElementById("bot");
   var script=[
-    {from:"u",tag:"Отправитель · голосовое, 0:24",text:"«Доброе утро, на завтра нам надо мяса килограмм сорок, курицы двадцать, масло подсолнечное шесть литров и муки два мешка. Мясо срочно, у нас сегодня заканчивается.»"},
-    {from:"b",tag:"Заявка №1043 · принята 07:41",text:"Принял голосовое, собрал заявку. Проверьте, пожалуйста:",
+    {from:"u",tag:"Объект · голосовое, 0:24",text:"«Доброе утро, на завтра нам надо мяса килограмм сорок, курицы двадцать, масло подсолнечное шесть литров и муки два мешка. Мясо срочно, у нас сегодня заканчивается.»"},
+    {from:"b",tag:"Заявка №1043 · принята 07:41",text:"Принял. Собрал заявку:",
      card:{t:"Объект определён по отправителю",rows:[["Говядина","40 кг · срочно"],["Курица","20 кг"],["Масло подсолнечное","6 л"],["Мука","2 мешка ⚠"],["Нужно на","завтра"]]}},
-    {from:"b",text:"Одно место не уверен: «два мешка» — в справочнике мука в килограммах.",em:"Сколько килограммов в мешке — 50 или 25?"}
+    {from:"b",text:"Одна строка неоднозначна: «два мешка» — в справочнике мука в килограммах. Её разберёт оператор.",em:"Отвечать не нужно — сообщим, когда заявка будет принята."}
   ];
   var timers=[];function clear(){timers.forEach(clearTimeout);timers=[];}
   function el(h){var d=document.createElement("div");d.innerHTML=h;return d.firstElementChild;}
@@ -454,18 +452,11 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
     if(m.card){h+='<div class="bot-card2"><div class="t">→ '+m.card.t+'</div><div class="g">'+m.card.rows.map(function(r){return '<span>'+r[0]+'</span><span'+(/⚠/.test(r[1])?' class="warn"':'')+'>'+r[1]+'</span>';}).join('')+'</div></div>';}
     return el(h+'</div></div>');
   }
-  function actions(){
-    var a=el('<div class="bot-act"><button type="button" class="ok">По 50 кг — всё верно</button><button type="button" class="alt">Исправить позицию</button></div>');
-    a.querySelector(".ok").onclick=function(){a.remove();body.appendChild(msg({from:"u",text:"По 50, итого 100 кг. Остальное верно"}));typing(done);};
-    a.querySelector(".alt").onclick=function(){a.remove();body.appendChild(msg({from:"u",text:"Курицы не 20, а 25 кг"}));typing(function(){body.appendChild(msg({from:"b",text:"Поправил: курица — 25 кг. Мука по-прежнему требует уточнения."}));body.appendChild(actions());});};
-    return a;
-  }
   function done(){
-    body.appendChild(el('<div class="bot-done"><span class="ck">✓</span><div><b>Заявка №1043 подтверждена.</b> Мука — 100 кг, срочная позиция отмечена. Форма заполнена, ушла оператору на проверку; голосовое сохранено при ней.</div></div>'));
-    timers.push(setTimeout(function(){typing(function(){body.appendChild(msg({from:"b",tag:"Оператор · 07:52",text:"Заявка принята без правок. «Два мешка = 100 кг» запомнил для вашего объекта — в следующий раз спрашивать не буду."}));});},1800));
+    body.appendChild(el('<div class="bot-done"><span class="ck">✓</span><div><b>Заявка №1043 принята оператором, 07:52.</b> Мука — 100 кг: оператор сопоставил «мешок» с 50 кг и запомнил это для вашего объекта. Форма заполнена, голосовое сохранено при заявке.</div></div>'));
   }
   function typing(cb){var t=el('<div class="bot-typing"><span></span></div>');body.appendChild(t);timers.push(setTimeout(function(){t.remove();cb();},700));}
-  function run(){clear();body.innerHTML="";var i=0;(function tick(){if(i>=script.length){body.appendChild(actions());return;}typing(function(){body.appendChild(msg(script[i]));i++;timers.push(setTimeout(tick,600));});})();}
+  function run(){clear();body.innerHTML="";var i=0;(function tick(){if(i>=script.length){timers.push(setTimeout(function(){typing(done)},1400));return;}typing(function(){body.appendChild(msg(script[i]));i++;timers.push(setTimeout(tick,600));});})();}
   btn.addEventListener("click",run);
   var started=false;
   if("IntersectionObserver" in window){new IntersectionObserver(function(es,io){es.forEach(function(e){if(e.isIntersecting&&!started){started=true;run();io.disconnect();}});},{threshold:.3}).observe(root);}else{run();}
