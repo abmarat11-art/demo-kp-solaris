@@ -63,6 +63,17 @@ mark{background:none;color:inherit;background-image:linear-gradient(var(--warnbg
 @media(prefers-reduced-motion:reduce){.hub .lines path,.hub .p,.hub .c{opacity:1;transform:none;animation:none;transition:none}.hub .lines path{opacity:.75}}
 @media print{.hub .lines path{opacity:.75;animation:none}.hub .p,.hub .c{opacity:1;transform:none}}
 
+
+.hub .p .num{fill:var(--acc2);stroke:var(--steel);stroke-width:1}
+.hub .p .numt{font-size:14px;font-weight:600;fill:var(--acc);text-anchor:middle}
+.hub .p .stp{font-size:17px;fill:var(--text);text-anchor:start}
+.hub .chain path{fill:none;stroke:var(--steel);stroke-width:1.6;stroke-dasharray:5 6;stroke-linecap:round;opacity:0;transition:opacity .6s ease;marker-end:url(#arr)}
+.hub.in .chain path{opacity:.75;animation:hubflow 1.6s linear infinite}
+.hub.in .chain path:nth-child(2){animation-delay:-.5s}.hub.in .chain path:nth-child(3){animation-delay:-1s}
+@media(max-width:600px){.hub .p .stp{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.hub .chain path{opacity:.75;animation:none;transition:none}}
+@media print{.hub .chain path{opacity:.75;animation:none}}
+
 /* чек-лист */
 .chk{list-style:none;margin:22px 0 0;padding:0;max-width:70ch}
 .chk li{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.5;opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
@@ -265,34 +276,34 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 
 <h2 class="rv">Как это подключается</h2>
 <div class="hub rv">
-<div class="hub-l"><span>Что приходит от объектов</span><span>Модуль Cloudplus</span></div>
+<div class="hub-l"><span>Что приходит от объектов</span><span>Порядок обработки</span></div>
 <svg class="hub-h" viewBox="0 0 1000 440" role="img" aria-label="Текст, голосовые, фото и таблицы проходят через модуль Cloudplus и превращаются в структурированную заявку">
 <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#4a6f95" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4a6f95" stop-opacity=".22"/><stop offset="1" stop-color="#4a6f95" stop-opacity="0"/></radialGradient></defs>
-<g class="lines"><path d="M216 80 C 320 80, 330 225, 408 225"/><path d="M234 177 C 330 177, 330 225, 408 225"/><path d="M245 274 C 340 274, 330 225, 408 225"/><path d="M254 371 C 340 371, 330 225, 408 225"/><path d="M592 225 C 670 225, 650 80, 683 80"/><path d="M592 225 C 670 225, 650 177, 671 177"/><path d="M592 225 C 670 225, 660 274, 751 274"/><path d="M592 225 C 670 225, 620 371, 700 371"/></g>
+<g class="lines"><path d="M216 80 C 320 80, 330 225, 408 225"/><path d="M234 177 C 330 177, 330 225, 408 225"/><path d="M245 274 C 340 274, 330 225, 408 225"/><path d="M254 371 C 340 371, 330 225, 408 225"/><path d="M592 225 C 632 225, 612 61, 647 61"/></g><g class="chain"><path d="M676 105 L676 137"/><path d="M676 195 L676 227"/><path d="M676 285 L676 317"/></g>
 <ellipse cx="500" cy="225" rx="180" ry="125" fill="url(#glow)"/>
 <g class="p"><rect x="50" y="59" width="144" height="42" rx="10"/><text x="122" y="86">Текст в чате</text></g>
 <g class="p"><rect x="50" y="156" width="162" height="42" rx="10"/><text x="131" y="183">Голосовые</text></g>
 <g class="p"><rect x="50" y="253" width="173" height="42" rx="10"/><text x="136" y="280">Фото и сканы</text></g>
 <g class="p"><rect x="50" y="350" width="182" height="42" rx="10"/><text x="141" y="377">Excel и таблицы</text></g>
-<g class="p"><rect x="691" y="59" width="259" height="42" rx="10"/><text x="820" y="86">Распознаёт и собирает</text></g>
-<g class="p"><rect x="679" y="156" width="271" height="42" rx="10"/><text x="814" y="183">Сверяет со справочником</text></g>
-<g class="p"><rect x="759" y="253" width="191" height="42" rx="10"/><text x="854" y="280">Помечает спорное</text></g>
-<g class="p"><rect x="708" y="350" width="242" height="42" rx="10"/><text x="829" y="377">Отдаёт оператору</text></g>
+<g class="p"><rect x="655" y="40" width="295" height="42" rx="10"/><circle class="num" cx="676" cy="61" r="13"/><text class="numt" x="676" y="66">1</text><text class="stp" x="698" y="67">Распознаёт и собирает</text></g>
+<g class="p"><rect x="655" y="130" width="295" height="42" rx="10"/><circle class="num" cx="676" cy="151" r="13"/><text class="numt" x="676" y="156">2</text><text class="stp" x="698" y="157">Сверяет со справочником</text></g>
+<g class="p"><rect x="655" y="220" width="295" height="42" rx="10"/><circle class="num" cx="676" cy="241" r="13"/><text class="numt" x="676" y="246">3</text><text class="stp" x="698" y="247">Помечает спорное</text></g>
+<g class="p"><rect x="655" y="310" width="295" height="42" rx="10"/><circle class="num" cx="676" cy="331" r="13"/><text class="numt" x="676" y="336">4</text><text class="stp" x="698" y="337">Отдаёт оператору</text></g>
 <g class="c"><rect x="416" y="195" width="168" height="60" rx="15"/><text x="500" y="233">Cloudplus</text></g>
 </svg>
 <svg class="hub-v" viewBox="0 0 420 820" aria-hidden="true">
 <g class="lines"><path d="M210 93 L210 117"/><path d="M210 163 L210 187"/><path d="M210 233 L210 257"/><path d="M210 303 L210 376"/><path d="M210 442 L210 515"/><path d="M210 563 L210 587"/><path d="M210 633 L210 657"/><path d="M210 703 L210 727"/></g>
 <rect x="95" y="14" width="230" height="22" rx="6" fill="#fafbfd"/><text class="lbl" x="210" y="29">ЧТО ПРИХОДИТ ОТ ОБЪЕКТОВ</text>
-<rect x="120" y="486" width="180" height="22" rx="6" fill="#fafbfd"/><text class="lbl" x="210" y="501">МОДУЛЬ CLOUDPLUS</text>
+<rect x="120" y="486" width="180" height="22" rx="6" fill="#fafbfd"/><text class="lbl" x="210" y="501">ПОРЯДОК ОБРАБОТКИ</text>
 <ellipse cx="210" cy="410" rx="150" ry="110" fill="url(#glow)"/>
 <g class="p"><rect x="140" y="49" width="140" height="42" rx="10"/><text x="210" y="76">Текст в чате</text></g>
 <g class="p"><rect x="140" y="119" width="140" height="42" rx="10"/><text x="210" y="146">Голосовые</text></g>
 <g class="p"><rect x="132" y="189" width="156" height="42" rx="10"/><text x="210" y="216">Фото и сканы</text></g>
 <g class="p"><rect x="125" y="259" width="170" height="42" rx="10"/><text x="210" y="286">Excel и таблицы</text></g>
-<g class="p"><rect x="90" y="519" width="240" height="42" rx="10"/><text x="210" y="546">Распознаёт и собирает</text></g>
-<g class="p"><rect x="85" y="589" width="250" height="42" rx="10"/><text x="210" y="616">Сверяет со справочником</text></g>
-<g class="p"><rect x="125" y="659" width="170" height="42" rx="10"/><text x="210" y="686">Помечает спорное</text></g>
-<g class="p"><rect x="97" y="729" width="226" height="42" rx="10"/><text x="210" y="756">Отдаёт оператору</text></g>
+<g class="p"><rect x="55" y="519" width="310" height="42" rx="10"/><circle class="num" cx="78" cy="540" r="13"/><text class="numt" x="78" y="545">1</text><text class="stp" x="100" y="546">Распознаёт и собирает</text></g>
+<g class="p"><rect x="55" y="589" width="310" height="42" rx="10"/><circle class="num" cx="78" cy="610" r="13"/><text class="numt" x="78" y="615">2</text><text class="stp" x="100" y="616">Сверяет со справочником</text></g>
+<g class="p"><rect x="55" y="659" width="310" height="42" rx="10"/><circle class="num" cx="78" cy="680" r="13"/><text class="numt" x="78" y="685">3</text><text class="stp" x="100" y="686">Помечает спорное</text></g>
+<g class="p"><rect x="55" y="729" width="310" height="42" rx="10"/><circle class="num" cx="78" cy="750" r="13"/><text class="numt" x="78" y="755">4</text><text class="stp" x="100" y="756">Отдаёт оператору</text></g>
 <g class="c"><rect x="126" y="380" width="168" height="60" rx="15"/><text x="210" y="418">Cloudplus</text></g>
 </svg>
 </div>
