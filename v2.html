@@ -253,8 +253,8 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <main class="page">
 
 <div class="top rv">
-  <div class="from"><b>CLOUDPLUS</b>Предварительное коммерческое предложение<br><span data-field="date">23 сентября 2026</span></div>
-  <div class="to"><b data-field="client">SOLARIS</b>этап 1 · по ТЗ от <span data-field="meeting-date">23 сентября 2026</span></div>
+  <div class="from"><b>CLOUDPLUS</b>Предварительное коммерческое предложение</div>
+  <div class="to"><b data-field="client">SOLARIS</b>этап 1 · приём и первичная обработка заявок</div>
 </div>
 
 <h1 class="rv">Один канал приёма заявок: из Telegram — в готовую структурированную заявку</h1>
@@ -309,7 +309,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 
 <div class="bot rv" id="bot">
   <div class="bot-top">
-    <div><h3>Заявка от объекта: голосовое — за полторы минуты</h3><p>Как это выглядит в чате объекта: человек говорит как обычно, дальше работает модуль</p></div>
+    <div><h3>Заявка от объекта: голосовое сообщение</h3><p>Как это выглядит в чате объекта: человек говорит как обычно, дальше работает модуль</p></div>
     <button type="button" class="bot-run" id="botRun"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><circle cx="9" cy="13" r="1.3"/><circle cx="15" cy="13" r="1.3"/><path d="M12 3v4"/></svg>Прогнать сценарий</button>
   </div>
   <div class="bot-grid">
@@ -377,18 +377,6 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 </ul>
 <p class="note rv">Допустимый уровень точности распознавания фиксируем цифрой до начала работ — по вашим реальным сообщениям, а не по общим обещаниям.</p>
 
-<h2 class="rv">Условия</h2>
-<table class="rv">
-  <thead><tr><th>Шаг</th><th>Срок</th><th>Стоимость</th><th>Оплата</th></tr></thead>
-  <tbody class="stag">
-    <tr><td class="n">1. Согласование и контрольные примеры<small>открытые вопросы ТЗ, состав пилота, критерии успешности</small></td><td data-field="t1"><span class="ph">[срок]</span></td><td data-field="p1"><span class="ph">[сумма]</span></td><td data-field="pay1"><span class="ph">[условия]</span></td></tr>
-    <tr><td class="n">2. Справочники и формат заявки<small>объекты, пользователи, товары, единицы, правила сопоставления</small></td><td data-field="t2"><span class="ph">[срок]</span></td><td data-field="p2"><span class="ph">[сумма]</span></td><td data-field="pay2"><span class="ph">[условия]</span></td></tr>
-    <tr><td class="n">3. Бот и распознавание<small>текст, голос, фото, Excel; сборка заявки; пометка спорных строк</small></td><td data-field="t3"><span class="ph">[срок]</span></td><td data-field="p3"><span class="ph">[сумма]</span></td><td data-field="pay3"><span class="ph">[условия]</span></td></tr>
-    <tr><td class="n">4. Рабочее место оператора и пилот<small>очередь, исправления, статусы, журнал, запуск на группе объектов</small></td><td data-field="t4"><span class="ph">[срок]</span></td><td data-field="p4"><span class="ph">[сумма]</span></td><td data-field="pay4"><span class="ph">[условия]</span></td></tr>
-  </tbody>
-</table>
-<p class="note rv">Сроки и стоимость ставим после того, как закрыты вопросы ниже: объём справочника, количество заявок в сутки и требуемая точность распознавания влияют на работу сильнее всего. Предложение действительно до <span data-field="valid-until" class="ph">[дата]</span>.</p>
-
 <div class="two rv">
   <div>
     <h3>Что не входит в первый этап</h3>
@@ -419,9 +407,9 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 
 <div class="next rv">
   <h2>Следующий шаг</h2>
-  <p>Встреча на час-полтора с оператором и администратором: закрываем вопросы из списка выше, определяем состав пилотной группы и собираем 10–15 реальных заявок за последние дни — текстом, голосом, фото и таблицей. На них считаем сроки, стоимость и календарный план первого этапа.</p>
+  <p>Рабочая встреча с оператором и администратором: закрываем вопросы из списка выше, определяем состав пилотной группы и собираем реальные заявки — текстом, голосом, фото и таблицей. На них считаем объём работ по первому этапу.</p>
   <div class="sign">
-    <div><b>Время</b><span>предложите пару вариантов на этой или следующей неделе</span></div>
+    <div><b>Встреча</b><span>предложите удобное время — подстроимся</span></div>
   </div>
 </div>
 
@@ -440,9 +428,9 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 (function(){
   var body=document.getElementById("botBody"), btn=document.getElementById("botRun"), root=document.getElementById("bot");
   var script=[
-    {from:"u",tag:"Объект · голосовое, 0:24",text:"«Доброе утро, на завтра нам надо мяса килограмм сорок, курицы двадцать, масло подсолнечное шесть литров и муки два мешка. Мясо срочно, у нас сегодня заканчивается.»"},
-    {from:"b",tag:"Заявка №1043 · принята 07:41",text:"Принял. Собрал заявку:",
-     card:{t:"Объект определён по отправителю",rows:[["Говядина","40 кг · срочно"],["Курица","20 кг"],["Масло подсолнечное","6 л"],["Мука","2 мешка ⚠"],["Нужно на","завтра"]]}},
+    {from:"u",tag:"Объект · голосовое",text:"«Доброе утро, на завтра нам надо мяса килограмм сорок, курицы двадцать, масло подсолнечное шесть литров и муки два мешка. Мясо срочно, у нас сегодня заканчивается.»"},
+    {from:"b",tag:"Заявка №1043 · принята",text:"Принял. Собрал заявку:",
+     card:{t:"Объект определён по отправителю",rows:[["Говядина","40 кг · срочно"],["Курица","20 кг"],["Масло подсолнечное","6 л"],["Мука","2 мешка ⚠"],["Комментарий","по мясу — сегодня заканчивается"]]}},
     {from:"b",text:"Одна строка неоднозначна: «два мешка» — в справочнике мука в килограммах. Её разберёт оператор.",em:"Отвечать не нужно — сообщим, когда заявка будет принята."}
   ];
   var timers=[];function clear(){timers.forEach(clearTimeout);timers=[];}
@@ -453,7 +441,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
     return el(h+'</div></div>');
   }
   function done(){
-    body.appendChild(el('<div class="bot-done"><span class="ck">✓</span><div><b>Заявка №1043 принята оператором, 07:52.</b> Мука — 100 кг: оператор сопоставил «мешок» с 50 кг и запомнил это для вашего объекта. Форма заполнена, голосовое сохранено при заявке.</div></div>'));
+    body.appendChild(el('<div class="bot-done"><span class="ck">✓</span><div><b>Заявка №1043 принята оператором.</b> Мука — 100 кг: оператор сопоставил «мешок» с 50 кг и запомнил это для вашего объекта. Форма заполнена, голосовое сохранено при заявке.</div></div>'));
   }
   function typing(cb){var t=el('<div class="bot-typing"><span></span></div>');body.appendChild(t);timers.push(setTimeout(function(){t.remove();cb();},700));}
   function run(){clear();body.innerHTML="";var i=0;(function tick(){if(i>=script.length){timers.push(setTimeout(function(){typing(done)},1400));return;}typing(function(){body.appendChild(msg(script[i]));i++;timers.push(setTimeout(tick,600));});})();}
