@@ -74,6 +74,42 @@ mark{background:none;color:inherit;background-image:linear-gradient(var(--warnbg
 @media(prefers-reduced-motion:reduce){.hub .chain path{opacity:.75;animation:none;transition:none}}
 @media print{.hub .chain path{opacity:.75;animation:none}}
 
+
+/* дорожка этапов — линейно, на всю ширину */
+.road{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:0 22px}
+.road .rail{position:absolute;left:17px;right:17px;top:17px;height:2px;background:var(--line);transform:scaleX(0);transform-origin:left;transition:transform 1.4s ease}
+.road.in .rail{transform:scaleX(1)}
+.road .stp{position:relative;padding-right:20px}
+.road .stp::after{content:"";position:absolute;right:4px;top:12px;width:9px;height:9px;border-right:2px solid var(--steel);border-top:2px solid var(--steel);transform:rotate(45deg) scale(.4);opacity:0;transition:opacity .4s ease,transform .4s ease}
+.road.in .stp::after{opacity:.8;transform:rotate(45deg) scale(1)}
+.road .stp.last::after{display:none}
+.road .dot{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#fff;border:2px solid var(--line);
+  color:var(--acc);font-weight:600;font-size:15px;margin:0 0 18px;position:relative;z-index:1;transition:border-color .45s ease,background .45s ease,transform .45s ease;transform:scale(.7);opacity:0}
+.road.in .dot{opacity:1;transform:none;border-color:var(--steel);background:var(--acc2)}
+.road .stp b{display:block;color:var(--ink);font-weight:600;font-size:17px;line-height:1.3;margin-bottom:8px}
+.road .stp .d{display:block;color:var(--mut);font-size:14px;line-height:1.55}
+.road .stp b,.road .stp .d{opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
+.road.in .stp b,.road.in .stp .d{opacity:1;transform:none}
+.road.in .stp:nth-child(2) .dot{transition-delay:.15s}.road.in .stp:nth-child(3) .dot{transition-delay:.45s}.road.in .stp:nth-child(4) .dot{transition-delay:.75s}
+.road.in .stp:nth-child(5) .dot{transition-delay:1.05s}.road.in .stp:nth-child(6) .dot{transition-delay:1.35s}
+.road.in .stp:nth-child(2) b,.road.in .stp:nth-child(2) .d{transition-delay:.25s}
+.road.in .stp:nth-child(3) b,.road.in .stp:nth-child(3) .d{transition-delay:.55s}
+.road.in .stp:nth-child(4) b,.road.in .stp:nth-child(4) .d{transition-delay:.85s}
+.road.in .stp:nth-child(5) b,.road.in .stp:nth-child(5) .d{transition-delay:1.15s}
+.road.in .stp:nth-child(6) b,.road.in .stp:nth-child(6) .d{transition-delay:1.45s}
+.road.in .stp:nth-child(2)::after{transition-delay:.4s}.road.in .stp:nth-child(3)::after{transition-delay:.7s}
+.road.in .stp:nth-child(4)::after{transition-delay:1.0s}.road.in .stp:nth-child(5)::after{transition-delay:1.3s}
+@media(max-width:900px){
+  .road{grid-template-columns:1fr;gap:0;padding-top:0;padding-left:52px}
+  .road .rail{left:17px;right:auto;top:8px;bottom:8px;width:2px;height:auto;transform:scaleY(0);transform-origin:top;transition:transform 1.4s ease}
+  .road.in .rail{transform:scaleY(1)}
+  .road .stp{padding:0 0 24px}
+  .road .stp::after{display:none}
+  .road .dot{position:absolute;left:-52px;top:0;margin:0}
+}
+@media(prefers-reduced-motion:reduce){.road .rail{transform:none;transition:none}.road .dot,.road .stp b,.road .stp .d,.road .stp::after{opacity:1;transform:none;transition:none}.road .dot{border-color:var(--steel);background:var(--acc2)}.road .stp::after{transform:rotate(45deg)}}
+@media print{.road .rail{transform:none}.road .dot,.road .stp b,.road .stp .d{opacity:1;transform:none}.road .stp::after{opacity:.8;transform:rotate(45deg)}.road{break-inside:avoid}}
+
 /* чек-лист */
 .chk{list-style:none;margin:22px 0 0;padding:0;max-width:70ch}
 .chk li{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.5;opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
@@ -275,37 +311,35 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 <p class="rv">Заявки приходят оператору в Telegram в шести разных видах: свободный текст, голосовые, фото рукописных и печатных бланков, Excel-файлы, документы и изображения, плюс несколько сообщений по одной заявке подряд. Оператор <mark>вручную разбирает каждое</mark>, дописывает недостающее и <mark>переносит позиции в форму заявки</mark> — строка за строкой, руками. Разные написания одного товара приходится сводить в голове, а исходные сообщения теряются в ленте чата.</p>
 
 <h2 class="rv">Как это подключается</h2>
-<div class="hub rv">
-<div class="hub-l"><span>Что приходит от объектов</span><span>Порядок обработки</span></div>
-<svg class="hub-h" viewBox="0 0 1000 440" role="img" aria-label="Текст, голосовые, фото и таблицы проходят через модуль Cloudplus и превращаются в структурированную заявку">
-<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#4a6f95" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4a6f95" stop-opacity=".22"/><stop offset="1" stop-color="#4a6f95" stop-opacity="0"/></radialGradient></defs>
-<g class="lines"><path d="M216 80 C 320 80, 330 225, 408 225"/><path d="M234 177 C 330 177, 330 225, 408 225"/><path d="M245 274 C 340 274, 330 225, 408 225"/><path d="M254 371 C 340 371, 330 225, 408 225"/><path d="M592 225 C 632 225, 612 61, 647 61"/></g><g class="chain"><path d="M676 105 L676 137"/><path d="M676 195 L676 227"/><path d="M676 285 L676 317"/></g>
-<ellipse cx="500" cy="225" rx="180" ry="125" fill="url(#glow)"/>
-<g class="p"><rect x="50" y="59" width="144" height="42" rx="10"/><text x="122" y="86">Текст в чате</text></g>
-<g class="p"><rect x="50" y="156" width="162" height="42" rx="10"/><text x="131" y="183">Голосовые</text></g>
-<g class="p"><rect x="50" y="253" width="173" height="42" rx="10"/><text x="136" y="280">Фото и сканы</text></g>
-<g class="p"><rect x="50" y="350" width="182" height="42" rx="10"/><text x="141" y="377">Excel и таблицы</text></g>
-<g class="p"><rect x="655" y="40" width="295" height="42" rx="10"/><circle class="num" cx="676" cy="61" r="13"/><text class="numt" x="676" y="66">1</text><text class="stp" x="698" y="67">Распознаёт и собирает</text></g>
-<g class="p"><rect x="655" y="130" width="295" height="42" rx="10"/><circle class="num" cx="676" cy="151" r="13"/><text class="numt" x="676" y="156">2</text><text class="stp" x="698" y="157">Сверяет со справочником</text></g>
-<g class="p"><rect x="655" y="220" width="295" height="42" rx="10"/><circle class="num" cx="676" cy="241" r="13"/><text class="numt" x="676" y="246">3</text><text class="stp" x="698" y="247">Помечает спорное</text></g>
-<g class="p"><rect x="655" y="310" width="295" height="42" rx="10"/><circle class="num" cx="676" cy="331" r="13"/><text class="numt" x="676" y="336">4</text><text class="stp" x="698" y="337">Отдаёт оператору</text></g>
-<g class="c"><rect x="416" y="195" width="168" height="60" rx="15"/><text x="500" y="233">Cloudplus</text></g>
-</svg>
-<svg class="hub-v" viewBox="0 0 420 820" aria-hidden="true">
-<g class="lines"><path d="M210 93 L210 117"/><path d="M210 163 L210 187"/><path d="M210 233 L210 257"/><path d="M210 303 L210 376"/><path d="M210 442 L210 515"/><path d="M210 563 L210 587"/><path d="M210 633 L210 657"/><path d="M210 703 L210 727"/></g>
-<rect x="95" y="14" width="230" height="22" rx="6" fill="#fafbfd"/><text class="lbl" x="210" y="29">ЧТО ПРИХОДИТ ОТ ОБЪЕКТОВ</text>
-<rect x="120" y="486" width="180" height="22" rx="6" fill="#fafbfd"/><text class="lbl" x="210" y="501">ПОРЯДОК ОБРАБОТКИ</text>
-<ellipse cx="210" cy="410" rx="150" ry="110" fill="url(#glow)"/>
-<g class="p"><rect x="140" y="49" width="140" height="42" rx="10"/><text x="210" y="76">Текст в чате</text></g>
-<g class="p"><rect x="140" y="119" width="140" height="42" rx="10"/><text x="210" y="146">Голосовые</text></g>
-<g class="p"><rect x="132" y="189" width="156" height="42" rx="10"/><text x="210" y="216">Фото и сканы</text></g>
-<g class="p"><rect x="125" y="259" width="170" height="42" rx="10"/><text x="210" y="286">Excel и таблицы</text></g>
-<g class="p"><rect x="55" y="519" width="310" height="42" rx="10"/><circle class="num" cx="78" cy="540" r="13"/><text class="numt" x="78" y="545">1</text><text class="stp" x="100" y="546">Распознаёт и собирает</text></g>
-<g class="p"><rect x="55" y="589" width="310" height="42" rx="10"/><circle class="num" cx="78" cy="610" r="13"/><text class="numt" x="78" y="615">2</text><text class="stp" x="100" y="616">Сверяет со справочником</text></g>
-<g class="p"><rect x="55" y="659" width="310" height="42" rx="10"/><circle class="num" cx="78" cy="680" r="13"/><text class="numt" x="78" y="685">3</text><text class="stp" x="100" y="686">Помечает спорное</text></g>
-<g class="p"><rect x="55" y="729" width="310" height="42" rx="10"/><circle class="num" cx="78" cy="750" r="13"/><text class="numt" x="78" y="755">4</text><text class="stp" x="100" y="756">Отдаёт оператору</text></g>
-<g class="c"><rect x="126" y="380" width="168" height="60" rx="15"/><text x="210" y="418">Cloudplus</text></g>
-</svg>
+<div class="bleed">
+<div class="road rv">
+  <div class="rail"></div>
+  <div class="stp">
+    <span class="dot">1</span>
+    <b>Заявка приходит</b>
+    <span class="d">Текст, голосовое, фото бланка или Excel-таблица — как привыкли. Несколько сообщений собираются в одну заявку.</span>
+  </div>
+  <div class="stp">
+    <span class="dot">2</span>
+    <b>Модуль распознаёт</b>
+    <span class="d">Голос — в текст, фото и сканы — прочитаны, таблицы разобраны. Заявке присваивается номер.</span>
+  </div>
+  <div class="stp">
+    <span class="dot">3</span>
+    <b>Сверяет со справочником</b>
+    <span class="d">Позиции и единицы сводятся к товарному справочнику: разные написания — одна номенклатура.</span>
+  </div>
+  <div class="stp">
+    <span class="dot">4</span>
+    <b>Помечает спорное</b>
+    <span class="d">Что прочитано неуверенно или не нашлось в справочнике — отмечено. Молча такие строки не подтверждаются.</span>
+  </div>
+  <div class="stp last">
+    <span class="dot">5</span>
+    <b>Отдаёт оператору</b>
+    <span class="d">Форма заявки приходит заполненной: оператор проверяет только спорные строки и подтверждает.</span>
+  </div>
+</div>
 </div>
 <p class="note rv">Объект пишет в тот же Telegram и тем же способом, что и раньше. Несколько сообщений и файлов по одной заявке модуль объединяет в одну заявку до подтверждения; повторная отправка того же не создаёт дубль. Исходные сообщения и вложения сохраняются целиком.</p>
 
@@ -428,7 +462,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 </main>
 <script>
 (function(){
-  const targets=document.querySelectorAll(".rv,.stag,.chk,.hub,.track,h2");
+  const targets=document.querySelectorAll(".rv,.stag,.chk,.road,.track,h2");
   const show=e=>e.classList.add("in");
   if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches){targets.forEach(show);return;}
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){show(e.target);io.unobserve(e.target);}}),{threshold:.15,rootMargin:"0px 0px -6% 0px"});
