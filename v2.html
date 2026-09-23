@@ -161,6 +161,63 @@ h1.in .w{opacity:1;transform:none;filter:none}
   .wcard{border-style:solid}.wcard h4{opacity:1}.wcard .row{opacity:1;transform:none;visibility:visible}
   .wcard.now .body{height:auto}.wcard.now .body::before{display:none}.wl i{width:100%}}
 
+
+/* макет рабочего места оператора */
+.ui{margin-top:22px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 18px 40px -28px rgba(20,27,36,.45)}
+.ui-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#f2f5f8;border-bottom:1px solid var(--line)}
+.ui-bar .dots{display:flex;gap:6px}
+.ui-bar .dots i{width:10px;height:10px;border-radius:50%;background:#d6dbe2}
+.ui-bar .url{font-size:12px;color:var(--mut)}
+.ui-body{display:grid;grid-template-columns:260px 1fr}
+.ui-list{border-right:1px solid var(--line);background:#fafbfd}
+.ui-list .lh{padding:12px 16px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--line)}
+.ui-list .lh span{color:var(--acc);font-weight:600;margin-left:4px}
+.ui-list .li{padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px;border-left:3px solid transparent;
+  opacity:0;transform:translateX(-6px);transition:opacity .4s ease,transform .4s ease}
+.ui.in .li{opacity:1;transform:none}
+.ui.in .li:nth-child(2){transition-delay:.1s}.ui.in .li:nth-child(3){transition-delay:.18s}.ui.in .li:nth-child(4){transition-delay:.26s}
+.ui.in .li:nth-child(5){transition-delay:.34s}.ui.in .li:nth-child(6){transition-delay:.42s}
+.ui-list .li b{display:block;color:var(--ink);font-weight:600;font-size:13px;margin-bottom:3px}
+.ui-list .li span{color:var(--mut);font-size:12px}
+.ui-list .li.warn{background:#fff;border-left-color:var(--warn)}
+.ui-list .li.warn b{color:var(--warn)}
+.ui-list .li.done{opacity:.55}.ui.in .li.done{opacity:.55}
+.ui-main{padding:16px 18px 18px}
+.mh{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.mh b{font-size:16px;color:var(--ink)}
+.tag{font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:4px 8px;border-radius:20px;background:var(--acc2);color:var(--acc)}
+.tag.warn{background:var(--warnbg);color:var(--warn)}
+.mcols{display:grid;grid-template-columns:1fr 1.25fr;gap:16px}
+.cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.src .voice{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fafbfd}
+.src .play{width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;flex:0 0 26px}
+.src .wave{display:flex;align-items:flex-end;gap:3px;height:22px;flex:1}
+.src .wave i{flex:1;background:#c3cfdb;border-radius:2px;height:30%}
+.ui.in .src .wave i{animation:wv 1.5s ease-in-out infinite}
+.src .wave i:nth-child(3n){animation-delay:.2s}.src .wave i:nth-child(3n+1){animation-delay:.45s}
+@keyframes wv{0%,100%{height:28%}50%{height:92%}}
+.src .tr{margin-top:12px;font-size:13px;line-height:1.55;color:var(--text);padding:12px 14px;background:#f7f9fb;border-left:3px solid var(--steel);border-radius:0 8px 8px 0}
+.ft{width:100%;border-collapse:collapse;margin:0;font-size:13px}
+.ft th{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);padding:0 8px 8px 0;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap}
+.ft td{padding:10px 8px 10px 0;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+.ft td:nth-child(2),.ft td:nth-child(3){white-space:nowrap;width:1%;font-weight:600}
+.ft td em{display:block;font-style:normal;font-size:11px;color:var(--mut);margin-top:2px}
+.ft tr.w td{background:var(--warnbg)}
+.ft tr.w td em{color:var(--warn)}
+.ft tbody tr{opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease}
+.ui.in .ft tbody tr{opacity:1;transform:none}
+.ui.in .ft tbody tr:nth-child(2){transition-delay:.12s}.ui.in .ft tbody tr:nth-child(3){transition-delay:.24s}
+.ui.in .ft tbody tr:nth-child(4){transition-delay:.36s}
+.ui.in .ft tbody tr.w{animation:wrow 1s ease .9s 2}
+@keyframes wrow{50%{background:#f7e2c6}}
+.acts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.acts .btn{font-size:12px;font-weight:600;padding:9px 12px;border-radius:10px;background:var(--acc);color:#eef4fa;white-space:nowrap}
+.acts .btn.alt{background:#fff;color:#4c5764;border:1px solid var(--line)}
+@media(max-width:820px){.ui-body{grid-template-columns:1fr}.ui-list{border-right:0;border-bottom:1px solid var(--line)}
+  .ui-list .li:nth-child(n+4){display:none}.mcols{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.ui .li,.ft tbody tr{opacity:1;transform:none;transition:none}.ui.in .src .wave i,.ui.in .ft tbody tr.w{animation:none}}
+@media print{.ui{break-inside:avoid;box-shadow:none}.ui .li,.ft tbody tr{opacity:1;transform:none}.ui.in .src .wave i,.ui.in .ft tbody tr.w{animation:none}}
+
 /* чек-лист */
 .chk{list-style:none;margin:22px 0 0;padding:0;max-width:70ch}
 .chk li{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.5;opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
@@ -423,6 +480,46 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 </div>
 <p class="note rv">Объект пишет в тот же Telegram и тем же способом, что и раньше. Несколько сообщений и файлов по одной заявке модуль объединяет в одну заявку до подтверждения; повторная отправка того же не создаёт дубль. Исходные сообщения и вложения сохраняются целиком.</p>
 
+<h2 class="rv">Рабочее место оператора</h2>
+<p class="rv">Так выглядит экран, на котором оператор разбирает заявки: слева очередь по статусам, справа — исходное сообщение объекта рядом с тем, что из него собрал модуль. Это макет: состав полей и вид формы согласуем на первом шаге работ.</p>
+<div class="ui rv">
+  <div class="ui-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">solaris · приём заявок</span></div>
+  <div class="ui-body">
+    <div class="ui-list">
+      <div class="lh">Очередь <span>7</span></div>
+      <div class="li warn"><b>№1043 · Объект по отправителю</b><span>требует уточнения · 1 строка</span></div>
+      <div class="li"><b>№1042 · Объект</b><span>ожидает проверки · 6 позиций</span></div>
+      <div class="li"><b>№1041 · Объект</b><span>ожидает проверки · 3 позиции</span></div>
+      <div class="li done"><b>№1040 · Объект</b><span>подтверждена</span></div>
+      <div class="li done"><b>№1039 · Объект</b><span>подтверждена</span></div>
+    </div>
+    <div class="ui-main">
+      <div class="mh"><b>Заявка №1043</b><span class="tag warn">требует уточнения</span></div>
+      <div class="mcols">
+        <div class="src">
+          <div class="cap">Исходное сообщение</div>
+          <div class="voice"><span class="play">▶</span><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+          <div class="tr">«Доброе утро, на завтра нам надо мяса килограмм сорок, курицы двадцать, масло подсолнечное шесть литров и муки два мешка. Мясо срочно, у нас сегодня заканчивается.»</div>
+        </div>
+        <div class="frm">
+          <div class="cap">Форма заявки</div>
+          <table class="ft">
+            <thead><tr><th>Позиция</th><th>Кол-во</th><th>Ед.</th></tr></thead>
+            <tbody>
+              <tr><td>Говядина<em>срочно</em></td><td>40</td><td>кг</td></tr>
+              <tr><td>Курица</td><td>20</td><td>кг</td></tr>
+              <tr><td>Масло подсолнечное</td><td>6</td><td>л</td></tr>
+              <tr class="w"><td>Мука<em>«мешок» нет в справочнике</em></td><td>2</td><td>мешка</td></tr>
+            </tbody>
+          </table>
+          <div class="acts"><span class="btn">Подтвердить</span><span class="btn alt">Уточнить</span><span class="btn alt">Отклонить</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="note rv">Исходник всегда рядом: голосовое можно переслушать, фото — открыть, таблицу — посмотреть. История правок сохраняется по каждой заявке.</p>
+
 <h2 class="rv">Что меняется в работе людей</h2>
 <ul class="chk rv">
     <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="tx"><b>Форма заполняется сама, оператор разбирает только спорное</b> — нераспознанные и неоднозначные позиции; остальное приходит готовой формой с исходным сообщением рядом</span></li>
@@ -542,7 +639,7 @@ body::after{width:60vw;height:60vw;max-width:960px;max-height:960px;right:-24vw;
 </main>
 <script>
 (function(){
-  const targets=document.querySelectorAll(".rv,.stag,.chk,.track,h2");
+  const targets=document.querySelectorAll(".rv,.stag,.chk,.track,.ui,h2");
   const show=e=>e.classList.add("in");
   if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches){targets.forEach(show);return;}
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){show(e.target);io.unobserve(e.target);}}),{threshold:.15,rootMargin:"0px 0px -6% 0px"});
